@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
-        viewPagerAdapter.addFragment(moti1, "Explore");
-        viewPagerAdapter.addFragment(moti2, "Flights");
-        viewPagerAdapter.addFragment(moti3, "Travel");
+        viewPagerAdapter.addFragment(moti1, "Sot");
+        viewPagerAdapter.addFragment(moti2, "Parashikimi");
+        viewPagerAdapter.addFragment(moti3, "Harta");
         viewPager.setAdapter(viewPagerAdapter);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_baseline_wb_sunny_24);
