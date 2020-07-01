@@ -2,89 +2,84 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".Moti1">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardview"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardview2"
+    <EditText
+        android:id="@+id/search_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        android:hint="Kërko qytetin"
+        android:inputType="textCapWords"
+        app:layout_constraintLeft_toLeftOf="@+id/constraint"
+        app:layout_constraintRight_toRightOf="@+id/constraint"
+        app:layout_constraintTop_toTopOf="@+id/constraint" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/search_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/search_edit"
+        app:layout_constraintTop_toTopOf="@+id/search_edit" />
+
+
+    <TextView
+        android:id="@+id/town"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="Gjilan"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/search_edit" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
+    <ImageView
+        android:id="@+id/wheather_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/wheather"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/town" />
 
-            <EditText
-                android:id="@+id/search_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:layout_weight="0.7"
-                android:hint="Kërko qytetin"
-                android:inputType="textCapWords" />
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15°C"
+        app:layout_constraintBottom_toTopOf="@+id/desc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wheather_image" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floating_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/ic_search" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardview2"
-        android:layout_width="300dp"
-        android:layout_height="250dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="1dp"
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Përshkrimi"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardview">
+        app:layout_constraintTop_toBottomOf="@+id/wheather_image"
+        app:layout_constraintVertical_bias="0.105" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/town"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Gjilan"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
-
-            <ImageView
-                android:id="@+id/wheather_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/wheather" />
-
-            <TextView
-                android:id="@+id/temp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="15°C" />
-
-            <TextView
-                android:id="@+id/desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Përshkrimi"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
