@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import okhttp3.Call;
@@ -33,11 +34,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Moti1#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Moti1 extends Fragment {
     TextView view_city;
     TextView view_temp;
@@ -150,9 +146,17 @@ public class Moti1 extends Fragment {
                         String humiditys = "Lagështia: " + Math.round(Humidity) + "%";
                         setText(view_humidity, humiditys);
 
-                        String sunrises = "Lindja(Ora): " + Math.round(Sunrise);
+                        double ora1 = Math.round(Sunrise)*1000;
+                        Date data1 = new Date((long) ora1);
+                        String sunrise = new SimpleDateFormat("hh:mm").format(data1);
+
+                        double ora2 = Math.round(Sunset)*1000;
+                        Date data2 = new Date((long) ora2);
+                        String sunset = new SimpleDateFormat("hh:mm").format(data2);
+
+                        String sunrises = "Lindja: " + sunrise + " AM";
                         setText(view_sunrise, sunrises);
-                        String sunsets = "Perëndimi(Ora): " + Math.round(Sunset);
+                        String sunsets = "Perëndimi: " + sunset + " PM";
                         setText(view_sunset, sunsets);
 
 
