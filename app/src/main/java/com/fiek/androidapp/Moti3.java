@@ -18,7 +18,7 @@ public class Moti3 extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            
+
         }
     }
 

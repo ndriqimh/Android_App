@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Date;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -41,6 +42,10 @@ public class Moti1 extends Fragment {
     TextView view_city;
     TextView view_temp;
     TextView view_desc;
+    TextView view_wind;
+    TextView view_humidity;
+    TextView view_sunrise;
+    TextView view_sunset;
 
     ImageView view_weather;
     EditText search;
@@ -67,6 +72,12 @@ public class Moti1 extends Fragment {
         view_city = view.findViewById(R.id.town);
         view_temp = view.findViewById(R.id.temp);
         view_desc = view.findViewById(R.id.desc);
+
+        view_wind = view.findViewById(R.id.wind);
+        view_humidity = view.findViewById(R.id.humidity);
+
+        view_sunrise = view.findViewById(R.id.sunrise);
+        view_sunset = view.findViewById(R.id.sunset);
 
         view_weather = view.findViewById(R.id.wheather_image);
         search = view.findViewById(R.id.search_edit);
@@ -114,11 +125,37 @@ public class Moti1 extends Fragment {
                         JSONObject temp1 = json.getJSONObject("main");
                         Double Temperature = temp1.getDouble("temp");
 
+
+                        JSONObject wind1 = json.getJSONObject("wind");
+                        Double Wind = wind1.getDouble("speed");
+
+
+                        JSONObject humidity1 = json.getJSONObject("main");
+                        Double Humidity = humidity1.getDouble("humidity");
+
+                        JSONObject sunrise1 = json.getJSONObject("sys");
+                        Double Sunrise = sunrise1.getDouble("sunrise");
+
+                        JSONObject sunset1 = json.getJSONObject("sys");
+                        Double Sunset = sunset1.getDouble("sunset");
+
                         setText(view_city, City);
                         String temps = Math.round(Temperature) + " °C";
                         setText(view_temp, temps);
                         setText(view_desc, description);
                         setImage(view_weather);
+
+                        String winds = "Era: " + (Math.round(Wind)*3.6) + " km/h";
+                        setText(view_wind, winds);
+                        String humiditys = "Lagështia: " + Math.round(Humidity) + "%";
+                        setText(view_humidity, humiditys);
+
+                        String sunrises = "Lindja(Ora): " + Math.round(Sunrise);
+                        setText(view_sunrise, sunrises);
+                        String sunsets = "Perëndimi(Ora): " + Math.round(Sunset);
+                        setText(view_sunset, sunsets);
+
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
