@@ -2,6 +2,7 @@ package com.fiek.androidapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -87,6 +88,24 @@ public class Moti1 extends Fragment {
                 getWeather(String.valueOf(search.getText()));
             }
         });
+
+        SharedPreferences sh = getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+
+        String sh1 = sh.getString("view_city", "");
+        String sh2 = sh.getString("view_desc", "");
+        String sh3 = sh.getString("view_temp","");
+        String sh4 = sh.getString("view_wind","");
+        String sh5 = sh.getString("view_humiditys","");
+        String sh6 = sh.getString("view_sunrise","");
+        String sh7 = sh.getString("view_sunset","");
+        view_city.setText(sh1);
+        view_desc.setText(sh2);
+        view_temp.setText(sh3);
+        view_wind.setText(sh4);
+        view_humidity.setText(sh5);
+        view_sunrise.setText(sh6);
+        view_sunset.setText(sh7);
+
         return view;
     }
 
@@ -158,6 +177,19 @@ public class Moti1 extends Fragment {
                         setText(view_sunrise, sunrises);
                         String sunsets = "Perëndimi: " + sunset + " PM";
                         setText(view_sunset, sunsets);
+
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor edit = sharedPreferences.edit();
+
+                        edit.putString("view_city",view_city.getText().toString());
+                        edit.putString("view_desc",description);
+                        edit.putString("view_temp",temps);
+                        edit.putString("view_wind",winds);
+                        edit.putString("view_humiditys",humiditys);
+                        edit.putString("view_sunrise",sunrises);
+                        edit.putString("view_sunset",sunsets);
+
+                        edit.apply();
 
 
 
