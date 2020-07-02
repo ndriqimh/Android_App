@@ -41,6 +41,7 @@
             android:name=".MapsActivity"
             android:label="Map">
         </activity>
+        <activity android:name=".ParashikimiActivity" />
 
     </application>
 

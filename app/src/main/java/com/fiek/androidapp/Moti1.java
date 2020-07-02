@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -56,9 +63,13 @@ public class Moti1 extends Fragment {
     private String responseData;
     private String icons;
     public static double temperatura;
+    public String city;
+    String json_String;
 
     private Button butoni_veshjet;
     private Button butoni_harta;
+    private Button butoni_parashiko;
+
     public Moti1() {
         // Required empty public constructor
     }
@@ -90,6 +101,7 @@ public class Moti1 extends Fragment {
 
         butoni_veshjet = view.findViewById(R.id.button);
         butoni_harta = view.findViewById(R.id.button2);
+        butoni_parashiko = view.findViewById(R.id.butoni3);
 
         search_floating.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,15 +139,26 @@ public class Moti1 extends Fragment {
             }
         });
 
+        butoni_parashiko.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!city.equals(""))
+                    getJson();
+                else {
+                    Toast.makeText(getActivity(), "Enter a location first", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
         SharedPreferences sh = getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
 
         String sh1 = sh.getString("view_city", "");
         String sh2 = sh.getString("view_desc", "");
-        String sh3 = sh.getString("view_temp","");
-        String sh4 = sh.getString("view_wind","");
-        String sh5 = sh.getString("view_humiditys","");
-        String sh6 = sh.getString("view_sunrise","");
-        String sh7 = sh.getString("view_sunset","");
+        String sh3 = sh.getString("view_temp", "");
+        String sh4 = sh.getString("view_wind", "");
+        String sh5 = sh.getString("view_humiditys", "");
+        String sh6 = sh.getString("view_sunrise", "");
+        String sh7 = sh.getString("view_sunset", "");
         view_city.setText(sh1);
         view_desc.setText(sh2);
         view_temp.setText(sh3);
@@ -147,14 +170,15 @@ public class Moti1 extends Fragment {
         return view;
     }
 
-    private void getWeather(final String City)
-    {
+    private void getWeather(final String City) {
         OkHttpClient client = new OkHttpClient();
 
+        city = City;
         Request request = new Request.Builder()
-                .url("https://api.openweathermap.org/data/2.5/weather?q=" + City + "&appid=07548429c9a3c0607ce0887060372e63&units=metric")
+                .url("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=07548429c9a3c0607ce0887060372e63&units=metric")
                 .get()
                 .build();
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         try {
@@ -192,22 +216,22 @@ public class Moti1 extends Fragment {
                         JSONObject sunset1 = json.getJSONObject("sys");
                         Double Sunset = sunset1.getDouble("sunset");
 
-                        setText(view_city, City);
+                        setText(view_city, city);
                         String temps = Math.round(Temperature) + " °C";
                         setText(view_temp, temps);
                         setText(view_desc, description);
                         setImage(view_weather);
 
-                        String winds = "Era: " + (Math.round(Wind)*3.6) + " km/h";
+                        String winds = "Era: " + (Math.round(Wind) * 3.6) + " km/h";
                         setText(view_wind, winds);
                         String humiditys = "Lagështia: " + Math.round(Humidity) + "%";
                         setText(view_humidity, humiditys);
 
-                        double ora1 = Math.round(Sunrise)*1000;
+                        double ora1 = Math.round(Sunrise) * 1000;
                         Date data1 = new Date((long) ora1);
                         String sunrise = new SimpleDateFormat("hh:mm").format(data1);
 
-                        double ora2 = Math.round(Sunset)*1000;
+                        double ora2 = Math.round(Sunset) * 1000;
                         Date data2 = new Date((long) ora2);
                         String sunset = new SimpleDateFormat("hh:mm").format(data2);
 
@@ -219,26 +243,25 @@ public class Moti1 extends Fragment {
                         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
                         SharedPreferences.Editor edit = sharedPreferences.edit();
 
-                        edit.putString("view_city",view_city.getText().toString());
-                        edit.putString("view_desc",description);
-                        edit.putString("view_temp",temps);
-                        edit.putString("view_wind",winds);
-                        edit.putString("view_humiditys",humiditys);
-                        edit.putString("view_sunrise",sunrises);
-                        edit.putString("view_sunset",sunsets);
+                        edit.putString("view_city", view_city.getText().toString());
+                        edit.putString("view_desc", description);
+                        edit.putString("view_temp", temps);
+                        edit.putString("view_wind", winds);
+                        edit.putString("view_humiditys", humiditys);
+                        edit.putString("view_sunrise", sunrises);
+                        edit.putString("view_sunset", sunsets);
 
                         edit.apply();
 
 
-
                     } catch (JSONException e) {
-                        Toast.makeText(getActivity(),"Ka ndodhur nje gabim,provoni përsëri",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Ka ndodhur nje gabim,provoni përsëri", Toast.LENGTH_LONG).show();
                         e.printStackTrace();
                     }
                 }
             });
         } catch (IOException e) {
-            Toast.makeText(getActivity(),"Ka ndodhur nje gabim,provoni përsëri",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Ka ndodhur nje gabim,provoni përsëri", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -265,4 +288,69 @@ public class Moti1 extends Fragment {
             });
         }
     }
+
+    public void getJson() {
+        Toast.makeText(getActivity(), "Duke marrë të dhënat", Toast.LENGTH_SHORT).show();
+        new BackgroundTask().execute();
+    }
+
+    class BackgroundTask extends AsyncTask<Void, Void, String> {
+        String JSONSTRING;
+        String json_URL;
+
+        @Override
+        protected void onPreExecute() {
+            json_URL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=07548429c9a3c0607ce0887060372e63";
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                java.net.URL URL = new URL(json_URL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) URL.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ((JSONSTRING = bufferedReader.readLine()) != null) {
+                    stringBuilder.append(JSONSTRING + "\n");
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return stringBuilder.toString().trim();
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            json_String = result;
+            parseJson();
+        }
+    }
+
+    public void parseJson() {
+        if (json_String == null) {
+            Toast.makeText(getActivity(), "Provoni përsëri", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent = new Intent(getActivity(), ParashikimiActivity.class);
+            intent.putExtra("json", json_String);
+            startActivity(intent);
+        }
+    }
+
 }
