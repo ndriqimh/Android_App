@@ -21,7 +21,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
+    private FirebaseAnalytics mFirebaseAnalytics1;
+    private FirebaseAnalytics mFirebaseAnalytics2;
+    private FirebaseAnalytics mFirebaseAnalytics3;
     private Toolbar toolbar;
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -35,24 +37,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics1 = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics2 = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics3 = FirebaseAnalytics.getInstance(this);
 
         Bundle bundle1 = new Bundle();
         bundle1.putString("button","1");
-        mFirebaseAnalytics.logEvent("Klik_Veshjet", bundle1);
+        mFirebaseAnalytics1.logEvent("Klik_Veshjet", bundle1);
 
         Bundle bundle2 = new Bundle();
         bundle2.putString("button2","1");
-        mFirebaseAnalytics.logEvent("Klik_Harta", bundle2);
+        mFirebaseAnalytics2.logEvent("Klik_Harta", bundle2);
 
         Bundle bundle3 = new Bundle();
         bundle3.putString("butoni3","1");
-        mFirebaseAnalytics.logEvent("Klik_Parashikimi", bundle3);
+        mFirebaseAnalytics3.logEvent("Klik_Parashikimi", bundle3);
 
 
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle1);
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle2);
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle3);
+        mFirebaseAnalytics1.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle1);
+        mFirebaseAnalytics2.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle2);
+        mFirebaseAnalytics3.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle3);
 
         viewPager = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tab_layout);
