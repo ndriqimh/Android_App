@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         BadgeDrawable badgeDrawable = tabLayout.getTabAt(0).getOrCreateBadge();
         badgeDrawable.setVisible(true);
         badgeDrawable.setNumber(12);
+
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {

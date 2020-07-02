@@ -2,7 +2,7 @@ package com.fiek.androidapp;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,9 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -50,6 +52,9 @@ public class Moti1 extends Fragment {
     private Context mContext;
     private String responseData;
     private String icons;
+    public static double temperatura;
+
+    private Button butoni_veshjet;
 
     public Moti1() {
         // Required empty public constructor
@@ -80,6 +85,8 @@ public class Moti1 extends Fragment {
         search = view.findViewById(R.id.search_edit);
         search_floating = view.findViewById(R.id.floating_search);
 
+        butoni_veshjet = view.findViewById(R.id.button);
+
         search_floating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,22 +96,17 @@ public class Moti1 extends Fragment {
             }
         });
 
-        SharedPreferences sh = getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
+        butoni_veshjet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (true) {
+                    Intent i = new Intent(getActivity(), veshjetMoti.class);
+                    startActivity(i);
+                }
+            }
+        });
 
-        String sh1 = sh.getString("view_city", "");
-        String sh2 = sh.getString("view_desc", "");
-        String sh3 = sh.getString("view_temp","");
-        String sh4 = sh.getString("view_wind","");
-        String sh5 = sh.getString("view_humiditys","");
-        String sh6 = sh.getString("view_sunrise","");
-        String sh7 = sh.getString("view_sunset","");
-        view_city.setText(sh1);
-        view_desc.setText(sh2);
-        view_temp.setText(sh3);
-        view_wind.setText(sh4);
-        view_humidity.setText(sh5);
-        view_sunrise.setText(sh6);
-        view_sunset.setText(sh7);
+
 
         return view;
     }
@@ -139,7 +141,7 @@ public class Moti1 extends Fragment {
 
                         JSONObject temp1 = json.getJSONObject("main");
                         Double Temperature = temp1.getDouble("temp");
-
+                        temperatura = Temperature;
 
                         JSONObject wind1 = json.getJSONObject("wind");
                         Double Wind = wind1.getDouble("speed");
@@ -177,19 +179,6 @@ public class Moti1 extends Fragment {
                         setText(view_sunrise, sunrises);
                         String sunsets = "Perëndimi: " + sunset + " PM";
                         setText(view_sunset, sunsets);
-
-                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor edit = sharedPreferences.edit();
-
-                        edit.putString("view_city",view_city.getText().toString());
-                        edit.putString("view_desc",description);
-                        edit.putString("view_temp",temps);
-                        edit.putString("view_wind",winds);
-                        edit.putString("view_humiditys",humiditys);
-                        edit.putString("view_sunrise",sunrises);
-                        edit.putString("view_sunset",sunsets);
-
-                        edit.apply();
 
 
 
