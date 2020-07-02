@@ -58,7 +58,7 @@ public class Moti1 extends Fragment {
     public static double temperatura;
 
     private Button butoni_veshjet;
-
+    private Button butoni_harta;
     public Moti1() {
         // Required empty public constructor
     }
@@ -89,6 +89,7 @@ public class Moti1 extends Fragment {
         search_floating = view.findViewById(R.id.floating_search);
 
         butoni_veshjet = view.findViewById(R.id.button);
+        butoni_harta = view.findViewById(R.id.button2);
 
         search_floating.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +113,16 @@ public class Moti1 extends Fragment {
                 if (true) {
                     Intent i = new Intent(getActivity(), veshjetMoti.class);
                     startActivity(i);
+                }
+            }
+        });
+
+        butoni_harta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (true) {
+                    Intent u = new Intent(getActivity(), MapsActivity.class);
+                    startActivity(u);
                 }
             }
         });

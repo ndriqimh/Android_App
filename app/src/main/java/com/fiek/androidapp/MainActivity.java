@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Moti1 moti1;
     private Moti2 moti2;
-    private Moti3 moti3;
+    //private Moti3 moti3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +39,19 @@ public class MainActivity extends AppCompatActivity {
 
         moti1 = new Moti1();
         moti2 = new Moti2();
-        moti3 = new Moti3();
+        //moti3 = new Moti3();
 
         tabLayout.setupWithViewPager(viewPager);
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
         viewPagerAdapter.addFragment(moti1, "Sot");
         viewPagerAdapter.addFragment(moti2, "Parashikimi");
-        viewPagerAdapter.addFragment(moti3, "Harta");
+        //viewPagerAdapter.addFragment(moti3, "Harta");
         viewPager.setAdapter(viewPagerAdapter);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_baseline_wb_sunny_24);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_baseline_wb_sunny_24);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_baseline_wb_sunny_24);
+        //tabLayout.getTabAt(2).setIcon(R.drawable.ic_baseline_wb_sunny_24);
 
         BadgeDrawable badgeDrawable = tabLayout.getTabAt(0).getOrCreateBadge();
         badgeDrawable.setVisible(true);
