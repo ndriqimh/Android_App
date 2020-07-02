@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -125,6 +126,7 @@ public class Moti1 extends Fragment {
                 if (true) {
                     Intent i = new Intent(getActivity(), veshjetMoti.class);
                     startActivity(i);
+                    Animatoo.animateFade(getContext());
                 }
             }
         });
@@ -135,6 +137,7 @@ public class Moti1 extends Fragment {
                 if (true) {
                     Intent u = new Intent(getActivity(), MapsActivity.class);
                     startActivity(u);
+                    Animatoo.animateSlideUp(getContext());
                 }
             }
         });
@@ -350,6 +353,7 @@ public class Moti1 extends Fragment {
             Intent intent = new Intent(getActivity(), ParashikimiActivity.class);
             intent.putExtra("json", json_String);
             startActivity(intent);
+            Animatoo.animateSlideUp(getContext());
         }
     }
 
