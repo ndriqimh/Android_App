@@ -48,7 +48,7 @@ public class veshjetMoti extends AppCompatActivity {
         //hat
         if(temperatura <= 10){
             Extras1.setImageResource(R.drawable.hat);
-            Extras1TXT.setText("Hat");
+            Extras1TXT.setText("Kapelë");
 
         } else{
             Extras1.setImageResource(R.color.Transparent);
@@ -58,7 +58,7 @@ public class veshjetMoti extends AppCompatActivity {
         //scarf
         if(temperatura < 5){
             Extras2.setImageResource(R.drawable.scarf);
-            Extras2TXT.setText("Scarf");
+            Extras2TXT.setText("Shall");
         } else{
             Extras2.setImageResource(R.color.Transparent);
             Extras2TXT.setText("");
@@ -67,37 +67,37 @@ public class veshjetMoti extends AppCompatActivity {
         //top
         if(temperatura <= 5){
             top.setImageResource(R.drawable.winterjacket);
-            topTXT.setText("Winter Jacket");
+            topTXT.setText("Xhaketë Dimri");
         } else if(temperatura > 5 && temperatura <= 12){
             top.setImageResource(R.drawable.jacket);
-            topTXT.setText("Jacket");
+            topTXT.setText("Xhaketë");
         }else if(temperatura > 12 && temperatura < 20){
             top.setImageResource(R.drawable.sweater);
-            topTXT.setText("Sweater");
+            topTXT.setText("Duks");
         }else if(temperatura >= 20 && temperatura < 25){
             top.setImageResource(R.drawable.regularshirt);
-            topTXT.setText("Shirt");
+            topTXT.setText("Këmishë");
         }else if(temperatura >= 25){
             top.setImageResource(R.drawable.tshirt);
-            topTXT.setText("T-Shirt");
+            topTXT.setText("Fanellë");
         }
 
         //bottom
         if(temperatura >= 25){
             bottom.setImageResource(R.drawable.shorts);
-            bottomTXT.setText("Shorts");
+            bottomTXT.setText("Shorca");
         }else{
             bottom.setImageResource(R.drawable.trousers);
-            bottomTXT.setText("Trousers");
+            bottomTXT.setText("Pantollona");
         }
 
         //boot
         if(temperatura < 5){
             shoes.setImageResource(R.drawable.boot);
-            shoesTXT.setText("Boots");
+            shoesTXT.setText("Çizme");
         }else{
             shoes.setImageResource(R.drawable.shoe);
-            shoesTXT.setText("Shoes");
+            shoesTXT.setText("Këpucë");
         }
     }
 }

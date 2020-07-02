@@ -75,9 +75,9 @@ public class ParashikimiAdapter extends ArrayAdapter {
         forecastHolder.feelslike_txt.setText((int) Math.round(parashikimiModel.getFeels_like()) + "");
         forecastHolder.condit_txt.setText(parashikimiModel.getCondition());
         forecastHolder.conditDescription_txt.setText(parashikimiModel.getConditionDescription());
-        forecastHolder.wind_txt.setText("Wind: " + Math.round((parashikimiModel.getWind()) * 10.0) / 10.0 + " km/h");
-        forecastHolder.humid_txt.setText("Humidity: " + Math.round((parashikimiModel.getHumidity()) * 10.0) / 10.0 + "%");
-        forecastHolder.pressure_txt.setText("Pressure: " + Math.round((parashikimiModel.getPressure()) * 10.0) / 10.0 + " kPa");
+        forecastHolder.wind_txt.setText("Era: " + Math.round((parashikimiModel.getWind()) * 10.0) / 10.0 + " km/h");
+        forecastHolder.humid_txt.setText("Lagështia: " + Math.round((parashikimiModel.getHumidity()) * 10.0) / 10.0 + "%");
+        forecastHolder.pressure_txt.setText("Shtypja: " + Math.round((parashikimiModel.getPressure()) * 10.0) / 10.0 + " kPa");
         forecastHolder.icon_img.setImageResource(VendosFotot.weatherIcon(parashikimiModel.getICON()));
         return row;
     }
