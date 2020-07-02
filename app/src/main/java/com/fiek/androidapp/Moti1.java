@@ -70,6 +70,11 @@ public class Moti1 extends Fragment {
     private Button butoni_veshjet;
     private Button butoni_harta;
     private Button butoni_parashiko;
+    public static final String emri = "view_city";
+    public static final String temp = "view_temp";
+    public static final String desc = "view_desc";
+    public static final String lindja = "view_sunrise";
+    public static final String perendimi = "view_sunset";
 
     public Moti1() {
         // Required empty public constructor
@@ -155,13 +160,13 @@ public class Moti1 extends Fragment {
 
         SharedPreferences sh = getActivity().getSharedPreferences("MySharedPref", Context.MODE_PRIVATE);
 
-        String sh1 = sh.getString("view_city", "");
-        String sh2 = sh.getString("view_desc", "");
-        String sh3 = sh.getString("view_temp", "");
+        String sh1 = sh.getString(emri, "");
+        String sh2 = sh.getString(desc, "");
+        String sh3 = sh.getString(temp, "");
         String sh4 = sh.getString("view_wind", "");
         String sh5 = sh.getString("view_humiditys", "");
-        String sh6 = sh.getString("view_sunrise", "");
-        String sh7 = sh.getString("view_sunset", "");
+        String sh6 = sh.getString(lindja, "");
+        String sh7 = sh.getString(perendimi, "");
         view_city.setText(sh1);
         view_desc.setText(sh2);
         view_temp.setText(sh3);
