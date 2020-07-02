@@ -28,13 +28,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static String TAG = MapsActivity.class.getName();
     private List<LatLng> latLngArrayList;
     private int node_count=0;
-    private Button contraction;
-    private Button expansion;
-    private Button clear;
-    Polyline polyline;
-    private LatLng marker1;
-    private LatLng marker2;
-    private int markercount=0;
+
     private ClusterManager<MyItem> mClusterManager;
     private float currentZoom;
 

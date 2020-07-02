@@ -37,13 +37,22 @@ public class MainActivity extends AppCompatActivity {
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        Bundle bundle = new Bundle();
-        bundle.putString("button","1");
-        mFirebaseAnalytics.logEvent("Klikimi", bundle);
+        Bundle bundle1 = new Bundle();
+        bundle1.putString("button","1");
+        mFirebaseAnalytics.logEvent("Klik_Veshjet", bundle1);
+
+        Bundle bundle2 = new Bundle();
+        bundle2.putString("button2","1");
+        mFirebaseAnalytics.logEvent("Klik_Harta", bundle2);
+
+        Bundle bundle3 = new Bundle();
+        bundle3.putString("butoni3","1");
+        mFirebaseAnalytics.logEvent("Klik_Parashikimi", bundle3);
 
 
-
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle1);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle2);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle3);
 
         viewPager = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tab_layout);

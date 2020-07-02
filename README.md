@@ -7,4 +7,4 @@ Njashtu ky aplikacion përmban edhe 3 veçori të tjera:
 2. Tregon parashikimin e motit për ditët në vijim.
 3. Përmban edhe hartën, nëse shfrytëzuesi dëshiron të dijë se ku do ishte më së miri të shkohente me familjen/shokët për piknik, peshkim, etj.
 
-Të dhënat që ju fusni në aplikacion ruhen në telefonin tuaj me anë të share preferences!
+Të dhënat që ju fusni në aplikacion ruhen në telefonin tuaj me anë të shared preferences!
