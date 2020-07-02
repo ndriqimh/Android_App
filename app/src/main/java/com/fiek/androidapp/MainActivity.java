@@ -65,18 +65,17 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 0);
         viewPagerAdapter.addFragment(moti1, "Sot");
-        viewPagerAdapter.addFragment(moti2, "Parashikimi");
+        viewPagerAdapter.addFragment(moti2, "Të dhënat");
         //viewPagerAdapter.addFragment(moti3, "Harta");
         viewPager.setAdapter(viewPagerAdapter);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_baseline_wb_sunny_24);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_baseline_wb_sunny_24);
         //tabLayout.getTabAt(2).setIcon(R.drawable.ic_baseline_wb_sunny_24);
-
+/*
         BadgeDrawable badgeDrawable = tabLayout.getTabAt(0).getOrCreateBadge();
         badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(12);
-
+*/
     }
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {

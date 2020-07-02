@@ -106,7 +106,7 @@
         app:layout_constraintHorizontal_bias="0.338"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/desc"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.095" />
 
     <TextView
         android:id="@+id/sunrise"
@@ -132,7 +132,7 @@
         app:layout_constraintHorizontal_bias="0.229"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/humidity"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.076" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
